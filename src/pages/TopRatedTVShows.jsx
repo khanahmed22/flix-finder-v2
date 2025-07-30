@@ -103,6 +103,7 @@ export default function TopRatedTVShows() {
                       src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}
                       alt={show.name}
                       className="w-full aspect-[2/3] object-cover"
+                      sizes="(max-width: 500px) 100vw, 50vw"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
                       <button
