@@ -148,6 +148,8 @@ export default function Home() {
                       src={`https://image.tmdb.org/t/p/w500/${m.poster_path}`}
                       alt={m.title}
                       className="w-full aspect-[2/3] object-cover"
+                      sizes="(max-width: 500px) 100vw, 50vw"
+                      
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
                       <button
@@ -200,6 +202,8 @@ export default function Home() {
                       src={`https://image.tmdb.org/t/p/w500/${m.poster_path}`}
                       alt={m.name}
                       className="w-full aspect-[2/3] object-cover"
+                      sizes="(max-width: 500px) 100vw, 50vw"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
                       <button
@@ -252,6 +256,7 @@ export default function Home() {
                       src={`https://image.tmdb.org/t/p/w500/${m.poster_path}`}
                       alt={m.title}
                       className="w-full aspect-[2/3] object-cover"
+                      sizes="(max-width: 500px) 100vw, 50vw"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
                       <button
@@ -312,6 +317,7 @@ export default function Home() {
                       src={`https://image.tmdb.org/t/p/w500/${m.poster_path}`}
                       alt={m.name}
                       className="w-full aspect-[2/3] object-cover"
+                      sizes="(max-width: 500px) 100vw, 50vw"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
                       <button
