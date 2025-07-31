@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthProvider"
 import { useState, useRef, useEffect } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { useNavigate } from "react-router"
-import { Search, Menu, X, Film, Tv, User, Home, Star, ListVideo } from "lucide-react"
+import { Search, Menu, X, Film, Tv, User, Home, Star, ListVideo, Brain } from "lucide-react"
 import axios from "axios"
 import { LogIn } from "lucide-react"
 
@@ -67,6 +67,8 @@ export const Header = () => {
     { to: "/", label: "Home", icon: <Home className="w-4 h-4" /> },
     { to: "/top-rated-movies/1", label: "Top Movies", icon: <Film className="w-4 h-4" /> },
     { to: "/top-rated-tv-shows/1", label: "Top TV Shows", icon: <Tv className="w-4 h-4" /> },
+     { to: "/ai", label: "AI Suggestions", icon: <Brain className="w-4 h-4" /> },
+
    
   ]
 

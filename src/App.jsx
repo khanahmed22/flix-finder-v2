@@ -48,7 +48,7 @@ function App() {
 
           {session ?<Route path="/lists" element={<MovieListManager/>}></Route>: null}
 
-          <Route path="/gemini" element={<Gemini />}></Route>
+          <Route path="/ai" element={<Gemini />}></Route>
 
           <Route path="*" element={<NotFound />}></Route>
 
