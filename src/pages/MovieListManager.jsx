@@ -300,18 +300,18 @@ export default function MovieListManager() {
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <h1 className="text-4xl font-bold mb-2 flex items-center gap-3">
-              <List className="w-10 h-10 text-yellow-400" />
-              My Movie Lists
+            <h1 className="text-4xl max-md:text-2xl font-bold mb-2 flex items-center gap-3">
+              <List className="w-10 h-10 max-md:w-8 max-md:h-8 text-yellow-400" />
+              My Lists
             </h1>
-            <p className="text-gray-400">Create and manage your custom movie collections</p>
+            <p className="text-gray-400 max-md:text-sm">Create and manage your custom movie collections</p>
           </div>
           <button
             onClick={() => setShowCreateForm(!showCreateForm)}
             className="bg-yellow-600 hover:bg-yellow-700 text-black font-semibold px-6 py-3 rounded-lg flex items-center gap-2 transition-colors"
           >
             <Plus className="w-5 h-5" />
-            New List
+            <span className="max-md:hidden">New List</span>
           </button>
         </div>
 
@@ -361,7 +361,7 @@ export default function MovieListManager() {
             <div className="bg-gray-800 rounded-lg w-full max-w-4xl mx-4 max-h-[90vh] flex flex-col">
               {/* Modal Header */}
               <div className="flex items-center justify-between p-6 border-b border-gray-700">
-                <h2 className="text-xl font-bold flex items-center gap-2">
+                <h2 className="text-xl max-md:text-sm font-bold flex items-center gap-2">
                   <Search className="w-5 h-5 text-yellow-400" />
                   Add Movies to "{selectedList.title}"
                 </h2>
@@ -381,8 +381,9 @@ export default function MovieListManager() {
                     placeholder="Search movies on TMDb..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-lg focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400 text-lg"
+                    className="w-full  pl-12 pr-4 py-4 max-md:text-sm bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-lg focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400 text-lg"
                     autoFocus
+                    
                   />
                 </div>
               </div>
@@ -392,7 +393,7 @@ export default function MovieListManager() {
                 {searchLoading && search && (
                   <div className="flex items-center justify-center py-12">
                     <Loader2 className="w-6 h-6 animate-spin text-yellow-400" />
-                    <span className="ml-3 text-gray-400">Searching movies...</span>
+                    <span className="ml-3 text-gray-400">Searching titles...</span>
                   </div>
                 )}
 
@@ -448,7 +449,7 @@ export default function MovieListManager() {
                   </div>
                 ) : search && !searchLoading && searchResults?.length === 0 ? (
                   <div className="text-center py-12 text-gray-400">
-                    <Search className="w-16 h-16 mx-auto mb-4 text-gray-600" />
+                    <Search className="w-16 h-16 max-md:w-10 max-md:h-10 mx-auto mb-4 text-gray-600" />
                     <h3 className="text-xl font-semibold mb-2">No Results Found</h3>
                     <p>No movies found for "{search}"</p>
                     <p className="text-sm mt-1">Try a different search term</p>
@@ -456,8 +457,8 @@ export default function MovieListManager() {
                 ) : (
                   <div className="text-center py-12 text-gray-400">
                     <Search className="w-16 h-16 mx-auto mb-4 text-gray-600" />
-                    <h3 className="text-xl font-semibold mb-2">Search for Movies</h3>
-                    <p>Start typing to search for movies to add to your list</p>
+                    <h3 className="text-xl max-md:text-lg font-semibold mb-2">Search for Movies</h3>
+                    <p className="max-md:text-sm">Start typing to search for movies to add to your list</p>
                   </div>
                 )}
               </div>
@@ -467,8 +468,8 @@ export default function MovieListManager() {
 
         {/* Lists Grid */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-            <Grid3X3 className="w-6 h-6 text-yellow-400" />
+          <h2 className="text-2xl max-md:text-lg font-bold mb-6 flex items-center gap-2">
+            <Grid3X3 className="w-6 h-6 max-md:w-5 max-md:h-5 text-yellow-400" />
             Your Lists ({lists?.length || 0})
           </h2>
 
@@ -486,7 +487,7 @@ export default function MovieListManager() {
               {lists.map((list) => (
                 <div
                   key={list.id}
-                  className={`bg-gray-800 rounded-lg p-6 cursor-pointer transition-all duration-300 hover:transform hover:scale-105 border-2 ${
+                  className={`bg-gray-800  rounded-lg p-6 cursor-pointer transition-all duration-300 hover:transform hover:scale-105 border-2 ${
                     selectedList?.id === list.id
                       ? "border-yellow-400 bg-gray-750"
                       : "border-transparent hover:border-gray-600"
@@ -541,25 +542,25 @@ export default function MovieListManager() {
         {selectedList && (
           <div className="bg-gray-800 rounded-lg p-6">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold flex items-center gap-2">
+              <h2 className="text-xl max-md:text-lg font-bold flex items-center gap-2">
                 <MovieIcon className="w-5 h-5 text-yellow-400" />
-                Movies in "{selectedList.title}" ({movies?.length || 0})
+                <span className="italic">{selectedList.title}</span> {/*({movies?.length || 0})*/}
               </h2>
-              <div className="flex gap-3">
+              <div className="flex max-md:flex-col gap-3">
                 <button
                   onClick={generateListImage}
                   disabled={isGeneratingImage || !movies || movies.length === 0}
-                  className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2 transition-colors text-sm md:text-base"
+                  className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-semibold px-4 py-2 rounded-lg flex justify-center items-center gap-2 transition-colors text-sm md:text-base"
                 >
                   {isGeneratingImage ? <Loader2 className="w-4 h-4 animate-spin" /> : <Share2 className="w-4 h-4" />}
-                  {isGeneratingImage ? "Generating..." : "Share as Image"}
+                  {isGeneratingImage ? <span className="max-md:hidden">Generating...</span> : <span className="max-md:hidden">Share as Image</span>}
                 </button>
                 <button
                   onClick={() => setShowAddMovieModal(true)}
                   className="bg-yellow-600 hover:bg-yellow-700 text-black font-semibold px-4 py-2 rounded-lg flex items-center gap-2 transition-colors text-sm md:text-base"
                 >
                   <Plus className="w-4 h-4" />
-                  Add Movies
+                  <span className="max-md:hidden">Add Movies</span>
                 </button>
               </div>
             </div>

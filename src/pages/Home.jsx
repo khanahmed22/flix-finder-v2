@@ -107,6 +107,9 @@ export default function Home() {
                 className="w-full h-full object-cover max-md:object-center"
                 src={`https://image.tmdb.org/t/p/original${trendingTitleToDay?.backdrop_path}`}
                 alt={trendingTitleToDay?.title || trendingTitleToDay?.name}
+                sizes="(max-width: 900px) 100vw, 50vw"
+                      
+              
               />
             ) : (
               <div className="w-full h-full bg-gray-800 flex items-center justify-center text-xl font-medium text-gray-400">
