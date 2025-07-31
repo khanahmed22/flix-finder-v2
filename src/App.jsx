@@ -11,7 +11,7 @@ import NotFound from "./pages/NotFound";
 import Account from "./pages/Account";
 import MovieListManager from "./pages/MovieListManager";
 import { useAuth } from "./context/AuthProvider";
-import Lists from "./pages/Lists";
+import Gemini from "./pages/Gemini";
 import ScrollToTop from "./components/ScrollToTop";
 
 
@@ -44,11 +44,11 @@ function App() {
 
           <Route path="/account" element={<Account />}></Route>
 
-          <Route path="/try" element={<Lists />}></Route>
+          
 
           {session ?<Route path="/lists" element={<MovieListManager/>}></Route>: null}
 
-          
+          <Route path="/gemini" element={<Gemini />}></Route>
 
           <Route path="*" element={<NotFound />}></Route>
 

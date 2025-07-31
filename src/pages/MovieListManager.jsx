@@ -5,7 +5,8 @@ import { supabase } from "../db/supabase"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 import { toast } from "sonner"
-import domtoimage from "dom-to-image-more" // Import dom-to-image-more
+import { toPng } from "html-to-image"
+
 import {
   Plus,
   Search,
@@ -19,8 +20,6 @@ import {
   FilmIcon as MovieIcon,
   Grid3X3,
   X,
-  ChevronLeft,
-  ChevronRight,
   GripVertical,
   Share2,
 } from "lucide-react"
@@ -207,37 +206,56 @@ export default function MovieListManager() {
   }
 
   
-  const generateListImage = async () => {
-    if (!movies || movies.length === 0) {
-      toast.error("No movies in list to share")
-      return
-    }
-    if (!listContainerRef.current) {
-      toast.error("Could not find list container to capture.")
-      return
-    }
 
-    setIsGeneratingImage(true)
-    toast.info("Generating image...")
 
-    try {
-      const dataUrl = await domtoimage.toPng(listContainerRef.current, { quality: 0.95 })
 
-      const a = document.createElement("a")
-      a.href = dataUrl
-      a.download = `${selectedList.title.replace(/[^a-z0-9]/gi, "_").toLowerCase()}_movie_list.png`
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
-
-      toast.success("Image downloaded successfully!")
-    } catch (error) {
-      console.error("Error generating image:", error)
-      toast.error("Failed to generate image")
-    } finally {
-      setIsGeneratingImage(false)
-    }
+const generateListImage = async () => {
+  if (!movies || movies.length === 0) {
+    toast.error("No movies in the list to share.");
+    return;
   }
+
+  const node = listContainerRef.current;
+
+  if (!node) {
+    toast.error("Could not find the list container to capture.");
+    return;
+  }
+
+  setIsGeneratingImage(true);
+  toast.info("Generating image...");
+
+  try {
+    const dataUrl = await toPng(node, {
+      quality: 0.95,
+      pixelRatio: 2, 
+      cacheBust: true,
+      style: {
+        transform: "scale(1)",
+        transformOrigin: "top left",
+      },
+    });
+
+    const safeTitle = (selectedList?.title || "movie_list")
+      .replace(/[^a-z0-9]/gi, "_")
+      .toLowerCase();
+
+    const a = document.createElement("a");
+    a.href = dataUrl;
+    a.download = `${safeTitle}_list.png`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    toast.success("Image downloaded successfully!");
+  } catch (error) {
+    console.error("Image generation error:", error);
+    toast.error("Failed to generate image. Try again.");
+  } finally {
+    setIsGeneratingImage(false);
+  }
+};
+
 
   const formatDate = (dateString) => {
     if (!dateString) return "N/A"
@@ -599,7 +617,7 @@ export default function MovieListManager() {
                     <div
                       draggable
                       onDragStart={(e) => handleDragStart(e, movie, index)}
-                      className="absolute top-1/2 -translate-y-1/2 right-10 opacity-0 group-hover:opacity-100 bg-black bg-opacity-75 rounded p-1 z-10 transition-opacity cursor-grab"
+                      className="absolute top-5 right-2 -translate-y-1/2  opacity-0 group-hover:opacity-100 bg-black bg-opacity-75 rounded p-1 z-10 transition-opacity cursor-grab"
                     >
                       <GripVertical className="w-4 h-4 text-white" />
                     </div>
@@ -610,7 +628,7 @@ export default function MovieListManager() {
                         e.stopPropagation()
                         deleteMovie.mutate(movie.id)
                       }}
-                      className="absolute top-1/2 -translate-y-1/2 left-2 opacity-0 group-hover:opacity-100 bg-red-600 hover:bg-red-700 text-white p-1 rounded-full transition-all duration-300 z-10"
+                      className="absolute bottom-20 -translate-y-1/2 left-2 opacity-0 group-hover:opacity-100 bg-red-600 hover:bg-red-700 text-white p-1 rounded-full transition-all duration-300 z-10"
                       title="Remove from list"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -622,35 +640,7 @@ export default function MovieListManager() {
                         alt={movie.title || "Movie poster"}
                         className="w-full aspect-[2/3] object-cover"
                       />
-                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-end justify-center p-3 gap-2">
-                        {/* Move Left Button */}
-                        {index > 0 && (
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              moveMovie(index, "left")
-                            }}
-                            className="opacity-0 group-hover:opacity-100 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full transition-all duration-300 text-sm md:text-base"
-                            title="Move left"
-                          >
-                            <ChevronLeft className="w-4 h-4" />
-                          </button>
-                        )}
-
-                        {/* Move Right Button */}
-                        {index < movies.length - 1 && (
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              moveMovie(index, "right")
-                            }}
-                            className="opacity-0 group-hover:opacity-100 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full transition-all duration-300 text-sm md:text-base"
-                            title="Move right"
-                          >
-                            <ChevronRight className="w-4 h-4" />
-                          </button>
-                        )}
-                      </div>
+                      
                     </div>
 
                     <div className="p-3">

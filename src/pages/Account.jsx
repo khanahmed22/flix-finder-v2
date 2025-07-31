@@ -166,7 +166,7 @@ export default function Account() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-4xl max-md:text-2xl font-bold mb-2 flex items-center gap-3">
+              <h1 className="text-4xl max-md:text-xl font-bold mb-2 flex items-center gap-3">
                 <User className="w-10 h-10 max-md:w-8 max-md:h-8 text-yellow-400" />
                 My Dashboard
               </h1>
@@ -419,46 +419,50 @@ export default function Account() {
                 </div>
               ) : reviewQuery && reviewQuery.length > 0 ? (
                 <div className="space-y-4">
-                  {reviewQuery.slice(0, 3).map((review, index) => (
-                    <div key={index} className="bg-gray-700 rounded-lg p-4">
-                      <div className="flex items-start justify-between mb-3">
-                        <div className="flex items-start gap-4 flex-1">
-                          <img
-                            className="w-16 h-24 rounded-lg object-cover flex-shrink-0"
-                            src={`https://image.tmdb.org/t/p/w200${review.poster}`}
-                            alt={review.title}
-                          />
-                          <div className="flex-1 min-w-0">
-                            <h4 className="font-bold text-lg text-yellow-400 mb-1 truncate">{review.title}</h4>
-                            <div className="flex items-center gap-1 mb-2">
-                              {[...Array(5)].map((_, i) => (
-                                <Star
-                                  key={i}
-                                  className={`w-4 h-4 ${
-                                    i < review.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-600"
-                                  }`}
-                                />
-                              ))}
-                              <span className="text-sm text-gray-400 ml-1">{review.rating}/5</span>
-                            </div>
-                            <p className="text-gray-300 text-sm line-clamp-2">"{review.review}"</p>
-                          </div>
-                        </div>
-                        <button
-                          onClick={() => deleteUserReview({ tmID: review.tmID })}
-                          disabled={DeletePending}
-                          className="bg-red-600 hover:bg-red-700 disabled:bg-gray-600 text-white p-2 rounded transition-colors ml-4"
-                        >
-                          {DeletePending ? (
-                            <Loader2 className="w-4 h-4 animate-spin" />
-                          ) : (
-                            <Trash2 className="w-4 h-4" />
-                          )}
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+  {reviewQuery.slice(0, 3).map((review, index) => (
+    <div key={index} className="bg-slate-900 rounded-xl p-4 shadow-md">
+      <div className="flex flex-col md:flex-row gap-4">
+        <img
+          className="w-20 h-28 md:w-16 md:h-24 rounded-lg object-cover"
+          src={`https://image.tmdb.org/t/p/w200${review.poster}`}
+          alt={`${review.title} poster`}
+        />
+        
+        <div className="flex-1 min-w-0 space-y-1">
+          <h4 className="text-yellow-400 font-semibold text-lg truncate">{review.title}</h4>
+          <div className="flex items-center gap-1">
+            {[...Array(5)].map((_, i) => (
+              <Star
+                key={i}
+                className={`w-4 h-4 ${
+                  i < review.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-600"
+                }`}
+              />
+            ))}
+            <span className="text-sm text-gray-400 ml-1">{review.rating}/5</span>
+          </div>
+          <p className="text-gray-300 text-sm line-clamp-2 italic">"{review.review}"</p>
+        </div>
+
+        <div className="flex items-start md:items-center justify-end md:ml-4">
+          <button
+            onClick={() => deleteUserReview({ tmID: review.tmID })}
+            disabled={DeletePending}
+            className="bg-red-600 hover:bg-red-700 disabled:bg-gray-600 text-white p-2 rounded-lg transition-colors"
+            aria-label="Delete Review"
+          >
+            {DeletePending ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <Trash2 className="w-4 h-4" />
+            )}
+          </button>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
               ) : (
                 <div className="text-center py-12">
                   <MessageSquare className="w-16 h-16 mx-auto mb-4 text-gray-600" />
