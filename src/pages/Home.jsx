@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query"
 import { useNavigate } from "react-router"
 import axios from "axios"
 import { Play, TrendingUp, Star, Film, Tv, Calendar, Eye } from "lucide-react"
+import { motion } from "motion/react"
 
 export default function Home() {
   const navigate = useNavigate()
@@ -98,7 +99,12 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <motion.div className="min-h-screen bg-gray-900 text-white" 
+     initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      transition={{ duration: 0.5, ease: "easeIn" }}
+      >
       <div className="container mx-auto px-4 py-8">
         <section className="relative w-full h-[500px] rounded-lg overflow-hidden mb-12 shadow-xl">
           <div className="absolute inset-0">
@@ -364,6 +370,6 @@ export default function Home() {
           </div>
         </section>
       </div>
-    </div>
+    </motion.div>
   )
 }

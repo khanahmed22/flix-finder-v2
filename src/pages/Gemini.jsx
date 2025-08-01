@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
 import { useNavigate } from "react-router"
 import { GoogleGenAI } from "@google/genai"
+import { motion } from "motion/react"
 
 export default function Gemini() {
   const [mood, setMood] = useState("")
@@ -82,7 +83,12 @@ export default function Gemini() {
   }, [tmdbId, type])
 
   return (
-    <div className="min-h-screen mt-3 bg-gray-900 text-white p-4 relative overflow-hidden">
+    <motion.div className="min-h-screen mt-3 bg-gray-900 text-white p-4 relative overflow-hidden" 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      transition={{ duration: 0.5, ease: "easeIn" }}
+    > 
      
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-purple-600 to-blue-500 opacity-30 blur-3xl animate-pulse-slow z-0"></div>
       <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-gradient-to-tl from-yellow-400 to-orange-500 opacity-20 blur-3xl animate-pulse-slow-reverse z-0"></div>
@@ -169,6 +175,6 @@ export default function Gemini() {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   )
 }

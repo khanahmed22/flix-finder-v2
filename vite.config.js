@@ -11,7 +11,7 @@ export default defineConfig({
         manualChunks: {
           
           react: ['react', 'react-dom'],
-          vendor: ['axios', '@supabase/supabase-js', '@tanstack/react-query', 'lucide-react', '@google/genai','@google/genai','@supabase/auth-ui-react', '@supabase/auth-ui-shared'],
+          vendor: ['axios', '@supabase/supabase-js', '@tanstack/react-query', 'lucide-react', '@google/genai', '@supabase/auth-ui-shared','motion'],
         },
       },
     },

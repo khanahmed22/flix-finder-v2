@@ -15,6 +15,7 @@ import Gemini from "./pages/Gemini";
 import ScrollToTop from "./components/ScrollToTop";
 
 
+
 function App() {
 
   const {session}= useAuth()

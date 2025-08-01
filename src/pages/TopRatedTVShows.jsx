@@ -5,6 +5,7 @@ import { useQuery} from "@tanstack/react-query"
 import { useNavigate } from "react-router"
 import { useParams } from "react-router"
 import { ChevronLeft, ChevronRight, Star, Plus, Eye, Calendar, Tv } from "lucide-react"
+import { motion } from "motion/react"
 
 
 export default function TopRatedTVShows() {
@@ -80,7 +81,10 @@ export default function TopRatedTVShows() {
   const currentPage = Number(pgno)
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <motion.div className="min-h-screen bg-gray-900 text-white" initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      transition={{ duration: 0.5, ease: "easeIn" }}>
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-4xl max-md:text-xl font-bold mb-2 flex items-center gap-3">
@@ -225,6 +229,6 @@ export default function TopRatedTVShows() {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   )
 }

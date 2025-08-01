@@ -9,7 +9,7 @@ import { useAuth } from "../context/AuthProvider"
 import { useState } from "react"
 import { useQueryClient } from "@tanstack/react-query"
 import { Star, Plus, Trash2, Clock, Calendar, Users, Globe, Film, Award, ArrowLeftCircle, Loader2 } from "lucide-react"
-
+import { motion } from "motion/react"
 export default function MovieView() {
   const queryClient = useQueryClient();
   const [review, setReview] = useState("")
@@ -246,7 +246,16 @@ export default function MovieView() {
  
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <motion.div className="min-h-screen bg-gray-900 text-white" 
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 20,
+        mass: 0.8,
+        delay: 0.2,
+      }}>
       <div className="container mx-auto px-4 py-8">
       <div className="breadcrumbs mb-4" onClick={()=> navigate(-1)}>
         <span className="label cursor-pointer hover:text-white">← Back</span>
@@ -591,6 +600,6 @@ export default function MovieView() {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
