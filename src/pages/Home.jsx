@@ -130,6 +130,8 @@ export default function Home() {
                 {trendingTitleToDay?.overview}
               </p>
               <button
+                id="viewButton" 
+                aria-label="View Button"
                 className="bg-yellow-600 hover:bg-yellow-700 text-black font-semibold px-8 py-3 rounded-lg flex items-center gap-2 transition-colors text-lg shadow-lg"
                 onClick={() => navigate(`/${trendingTitleToDay?.media_type || "movie"}/${trendingTitleToDay.id}`)}
               >

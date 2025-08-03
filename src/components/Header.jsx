@@ -5,9 +5,9 @@ import { useAuth } from "../context/AuthProvider"
 import { useState, useRef, useEffect } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { useNavigate } from "react-router"
-import { Search, Menu, X, Film, Tv, User, Home, Star, ListVideo, Brain } from "lucide-react"
+import { Search, Menu, X, Film, Tv, User, Home, Brain,LogIn } from "lucide-react"
 import axios from "axios"
-import { LogIn } from "lucide-react"
+
 
 export const Header = () => {
   const { session } = useAuth()
@@ -163,6 +163,7 @@ export const Header = () => {
             ) : (
               <NavLink
                 to="/sign-in"
+                aria-label="Link to Sign In Page"
                 className="bg-yellow-600 hover:bg-yellow-700 text-black font-semibold px-4 py-2 rounded-lg transition-colors"
               > 
                 <div className="flex items-center gap-x-2">
@@ -175,6 +176,8 @@ export const Header = () => {
             )}
 
             <button
+              id="menuButton" 
+              aria-label="Menu Button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="lg:hidden p-2 rounded-md hover:bg-gray-800 transition-colors"
             >
