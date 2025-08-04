@@ -199,12 +199,12 @@ export default function MovieListManager() {
   }
 
 
-  const moveMovie = (movieIndex, direction) => {
-    const newIndex = direction === "left" ? movieIndex - 1 : movieIndex + 1
-    if (newIndex >= 0 && newIndex < movies.length) {
-      reorderMovies(movieIndex, newIndex)
-    }
-  }
+ // const moveMovie = (movieIndex, direction) => {
+ //   const newIndex = direction === "left" ? movieIndex - 1 : movieIndex + 1
+ //   if (newIndex >= 0 && newIndex < movies.length) {
+ //     reorderMovies(movieIndex, newIndex)
+ //   }
+//  }
 
   
 
