@@ -14,6 +14,7 @@ Don't know what to watch and from where? No worries, just hop on to Flix Finder 
 - Daisy UI and Tailwind for Styling.
 - React/TanStack Query for caching.
 - TMDB API for fetching movies
+- Zustand for State Management
 
 ## Check out Demo:
 
