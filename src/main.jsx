@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { AuthProvider } from "./context/AuthProvider.jsx";
+
 
 const queryClient = new QueryClient();
 
@@ -22,11 +22,11 @@ function Root() {
   return (
     <StrictMode>
       <QueryClientProvider client={queryClient}>
-        <AuthProvider>
+        
           <BrowserRouter>
             <App />
           </BrowserRouter>
-        </AuthProvider>
+     
         {Devtools && <Devtools initialIsOpen={false} />}
       </QueryClientProvider>
     </StrictMode>

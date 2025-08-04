@@ -5,11 +5,11 @@ import { useParams, useNavigate, Link } from "react-router"
 import { useQuery, useMutation } from "@tanstack/react-query"
 import { supabase } from "../db/supabase"
 import { toast } from "sonner"
-import { useAuth } from "../context/AuthProvider"
 import { useState } from "react"
 import { useQueryClient } from "@tanstack/react-query"
 import { Star, Plus, Trash2, Clock, Calendar, Users, Globe, Film, Award, ArrowLeftCircle, Loader2 } from "lucide-react"
 import { motion } from "motion/react"
+import { useAuth } from "../authStore/authStore"
 export default function MovieView() {
   const queryClient = useQueryClient();
   const [review, setReview] = useState("")

@@ -1,6 +1,5 @@
 
 
-import { useAuth } from "../context/AuthProvider"
 import { supabase } from "../db/supabase"
 import { useNavigate } from "react-router"
 import { useMutation, useQuery } from "@tanstack/react-query"
@@ -23,6 +22,7 @@ import {
 } from "lucide-react"
 import { useQueryClient } from "@tanstack/react-query"
 import { useEffect } from "react"
+import { useAuth } from "../authStore/authStore"
 
 export default function Account() {
   const queryClient = useQueryClient()

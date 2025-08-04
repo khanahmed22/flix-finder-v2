@@ -1,12 +1,12 @@
 
 
 import { NavLink } from "react-router"
-import { useAuth } from "../context/AuthProvider"
 import { useState, useRef, useEffect } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { useNavigate } from "react-router"
 import { Search, Menu, X, Film, Tv, User, Home, Brain,LogIn } from "lucide-react"
 import axios from "axios"
+import { useAuth } from "../authStore/authStore"
 
 
 export const Header = () => {

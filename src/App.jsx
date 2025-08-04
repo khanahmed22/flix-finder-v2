@@ -10,15 +10,30 @@ import MovieView from "./pages/MovieView";
 import NotFound from "./pages/NotFound";
 import Account from "./pages/Account";
 import MovieListManager from "./pages/MovieListManager";
-import { useAuth } from "./context/AuthProvider";
 import Gemini from "./pages/Gemini";
 import ScrollToTop from "./components/ScrollToTop";
+import { useEffect } from "react";
+import { useAuth } from "./authStore/authStore";
+import { supabase } from "./db/supabase";
 
 
 
 function App() {
 
-  const {session}= useAuth()
+  const {session, fetchSession,setSession}= useAuth()
+   useEffect(() => {
+    // Initial fetch of the session
+    fetchSession();
+
+    // Listen to auth state changes
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session); // update Zustand store directly
+    });
+
+    return () => {
+      listener.subscription.unsubscribe();
+    };
+  }, []);
   return (
     <>
       <div>

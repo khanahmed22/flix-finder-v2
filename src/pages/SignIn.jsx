@@ -2,8 +2,8 @@
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { supabase } from "../db/supabase";
-import { useAuth } from "../context/AuthProvider";
 import { useNavigate } from "react-router";
+import { useAuth } from "../authStore/authStore";
 
 export default function SignIn() {
   const { session, isLoading } = useAuth();
