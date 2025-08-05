@@ -44,7 +44,7 @@ export default function MovieListManager() {
     queryFn: async () => {
       if (!search) return []
       const res = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&query=${search}`,
+        `https://api.themoviedb.org/3/search/movie?api_key=${import.meta.env.VITE_TMDB_API_KEY}&query=${search}`,
       )
       return res.data.results
     },

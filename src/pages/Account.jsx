@@ -27,17 +27,13 @@ import { useAuth } from "../authStore/authStore"
 export default function Account() {
   const queryClient = useQueryClient()
   const navigate = useNavigate()
-  const { session } = useAuth()
+  const { session,signOut } = useAuth()
   const user_id = session?.user?.id
   const user = session?.user
   const email = user?.email
   const username = user?.user_metadata?.full_name || user?.user_metadata?.name || email
 
-  const handleSignOut = async () => {
-    await supabase.auth.signOut()
-    navigate("/")
-    toast.success("Signed out successfully")
-  }
+  
 
   const fetchWatchList = async () => {
     const { data: supabaseData, error } = await supabase.from("movieNew").select().eq("user_id", user_id)
@@ -246,14 +242,18 @@ export default function Account() {
                   Manage Lists
                 </button>
                 <button
-                  onClick={() => navigate("/settings")}
+                  onClick={() => navigate("#")}
                   className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors"
                 >
                   <Settings className="w-4 h-4" />
                   Settings
                 </button>
                 <button
-                  onClick={handleSignOut}
+                  onClick={()=> {
+                  signOut()
+                  navigate('/')
+                  }
+                }
                   className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors"
                 >
                   <LogOut className="w-4 h-4" />
