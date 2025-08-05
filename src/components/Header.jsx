@@ -155,6 +155,7 @@ export const Header = () => {
             {session ? (
               <NavLink
                 to="/account"
+                aria-label="Link to Account Page"
                 className="flex items-center space-x-2 bg-yellow-600 hover:bg-yellow-700 text-black font-semibold px-4 py-2 rounded-lg transition-colors"
               >
                 <User className="w-4 h-4" />

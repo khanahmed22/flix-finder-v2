@@ -110,10 +110,10 @@ export default function Home() {
           <div className="absolute inset-0">
             {trendingTitleToDay ? (
               <img
-                className="w-full h-full object-cover max-md:object-center"
-                src={`https://image.tmdb.org/t/p/original${trendingTitleToDay?.backdrop_path}`}
+                className="w-[1280px] h-full object-cover max-md:object-center"
+                src={`https://image.tmdb.org/t/p/w1280${trendingTitleToDay?.backdrop_path}`}
                 alt={trendingTitleToDay?.title || trendingTitleToDay?.name}
-                sizes="(max-width: 900px) 100vw, 50vw"
+                sizes="(max-width: 1280px) 100vw, 50vw"
                       
               
               />
@@ -156,10 +156,11 @@ export default function Home() {
                 >
                   <div className="relative">
                     <img
-                      src={`https://image.tmdb.org/t/p/w500/${m.poster_path}`}
+                      src={`https://image.tmdb.org/t/p/w342/${m.poster_path}`}
                       alt={m.title}
-                      className="w-full aspect-[2/3] object-cover"
-                      sizes="(max-width: 500px) 100vw, 50vw"
+                      className="w-[342px]  aspect-[2/3] object-cover"
+                      sizes="(max-width: 342px) 100vw, 50vw"
+                      loading="lazy"
                       
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
@@ -210,10 +211,10 @@ export default function Home() {
                 >
                   <div className="relative">
                     <img
-                      src={`https://image.tmdb.org/t/p/w500/${m.poster_path}`}
+                      src={`https://image.tmdb.org/t/p/w342/${m.poster_path}`}
                       alt={m.name}
-                      className="w-full aspect-[2/3] object-cover"
-                      sizes="(max-width: 500px) 100vw, 50vw"
+                      className="w-[342px] aspect-[2/3] object-cover"
+                      sizes="(max-width: 342px) 100vw, 50vw"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
@@ -264,10 +265,11 @@ export default function Home() {
                 >
                   <div className="relative">
                     <img
-                      src={`https://image.tmdb.org/t/p/w500/${m.poster_path}`}
+                      src={`https://image.tmdb.org/t/p/w342/${m.poster_path}`}
                       alt={m.title}
-                      className="w-full aspect-[2/3] object-cover"
-                      sizes="(max-width: 500px) 100vw, 50vw"
+                      className="w-[342px] aspect-[2/3] object-cover"
+                      sizes="(max-width: 342px) 100vw, 50vw"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
                       <button
@@ -325,10 +327,11 @@ export default function Home() {
                 >
                   <div className="relative">
                     <img
-                      src={`https://image.tmdb.org/t/p/w500/${m.poster_path}`}
+                      src={`https://image.tmdb.org/t/p/w342/${m.poster_path}`}
                       alt={m.name}
-                      className="w-full aspect-[2/3] object-cover"
-                      sizes="(max-width: 500px) 100vw, 50vw"
+                      className="w-[342px] aspect-[2/3] object-cover"
+                      sizes="(max-width: 342px) 100vw, 50vw"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
                       <button

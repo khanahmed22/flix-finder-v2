@@ -55,6 +55,7 @@ export default function Gemini() {
       setTmdbId("")
       setType("")
     },
+    
   })
 
   const handleSubmit = (e) => {

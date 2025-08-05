@@ -5,30 +5,31 @@ import Home from "./pages/Home";
 import TopRatedMovies from "./pages/TopRatedMovies";
 import TopRatedTVShows from "./pages/TopRatedTVShows";
 import { Toaster } from "sonner";
-import SignIn from "./pages/SignIn";
-import MovieView from "./pages/MovieView";
-import NotFound from "./pages/NotFound";
-import Account from "./pages/Account";
-import MovieListManager from "./pages/MovieListManager";
-import Gemini from "./pages/Gemini";
 import ScrollToTop from "./components/ScrollToTop";
 import { useEffect } from "react";
 import { useAuth } from "./authStore/authStore";
 import { supabase } from "./db/supabase";
+import { lazy, Suspense } from "react";
 
-
+const NotFound = lazy(() => import("./pages/NotFound"));
+const Account = lazy(() => import("./pages/Account"));
+const SignIn = lazy(() => import("./pages/SignIn"));
+const MovieView = lazy(()=>import('./pages/MovieView'))
+const Gemini = lazy(()=>import('./pages/Gemini'))
+const MovieListManager = lazy(()=>import('./pages/MovieListManager'))
 
 function App() {
-
-  const {session, fetchSession,setSession}= useAuth()
-   useEffect(() => {
+  const { session, fetchSession, setSession } = useAuth();
+  useEffect(() => {
     // Initial fetch of the session
     fetchSession();
 
     // Listen to auth state changes
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session); // update Zustand store directly
-    });
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session); // update Zustand store directly
+      }
+    );
 
     return () => {
       listener.subscription.unsubscribe();
@@ -44,7 +45,21 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
 
-          <Route path="/sign-in" element={<SignIn />}></Route>
+          <Route
+            path="/sign-in"
+            element={
+              <Suspense
+                fallback={
+                  <div className="min-h-screen flex items-center justify-center">
+                    {" "}
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-yellow-400"></div>
+                  </div>
+                }
+              >
+                <SignIn />
+              </Suspense>
+            }
+          ></Route>
 
           <Route
             path="/top-rated-movies/:pgno"
@@ -56,20 +71,87 @@ function App() {
             element={<TopRatedTVShows />}
           ></Route>
 
-          <Route path="/:type/:tmdbid" element={<MovieView />}></Route>
+          <Route
+            path="/:type/:tmdbid"
+            element={
+              <Suspense
+                fallback={
+                  <div className="min-h-screen flex items-center justify-center">
+                    {" "}
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-yellow-400"></div>
+                  </div>
+                }
+              >
+                <MovieView />
+              </Suspense>
+            }
+          ></Route>
 
-          <Route path="/account" element={<Account />}></Route>
+          <Route
+            path="/account"
+            element={
+              <Suspense
+                fallback={
+                  <div className="min-h-screen flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-yellow-400"></div>
+                  </div>
+                }
+              >
+                <Account />
+              </Suspense>
+            }
+          />
 
           
 
-          {session ?<Route path="/lists" element={<MovieListManager/>}></Route>: null}
+          {session ? (
+            <Route
+              path="/lists"
+              element={
+                <Suspense
+                  fallback={
+                    <div className="min-h-screen flex items-center justify-center">
+                      {" "}
+                      <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-yellow-400"></div>
+                    </div>
+                  }
+                >
+                  <MovieListManager />
+                </Suspense>
+              }
+            ></Route>): null}
 
-          <Route path="/ai" element={<Gemini />}></Route>
+          <Route
+            path="/ai"
+            element={
+              <Suspense
+                fallback={
+                  <div className="min-h-screen flex items-center justify-center">
+                    {" "}
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-yellow-400"></div>
+                  </div>
+                }
+              >
+                <Gemini />
+              </Suspense>
+            }
+          ></Route>
 
-          <Route path="*" element={<NotFound />}></Route>
-
-
-
+          <Route
+            path="*"
+            element={
+              <Suspense
+                fallback={
+                  <div className="min-h-screen flex items-center justify-center">
+                    {" "}
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-yellow-400"></div>
+                  </div>
+                }
+              >
+                <NotFound />
+              </Suspense>
+            }
+          ></Route>
         </Routes>
 
         <Footer />
