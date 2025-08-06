@@ -64,13 +64,14 @@ export const Header = () => {
   }
 
   const navLinks = [
-    { to: "/", label: "Home", icon: <Home className="w-4 h-4" /> },
-    { to: "/top-rated-movies/1", label: "Top Movies", icon: <Film className="w-4 h-4" /> },
-    { to: "/top-rated-tv-shows/1", label: "Top TV Shows", icon: <Tv className="w-4 h-4" /> },
-     { to: "/ai", label: "AI Suggestions", icon: <Brain className="w-4 h-4" /> },
+  { to: "/", label: "Home", icon: <Home className="w-4 h-4" /> },
+  { to: "/top-rated-movies/1", label: "Top Movies", icon: <Film className="w-4 h-4" /> },
+  { to: "/top-rated-tv-shows/1", label: "Top TV Shows", icon: <Tv className="w-4 h-4" /> },
+  ...(session
+    ? [{ to: "/ai", label: "AI Suggestions", icon: <Brain className="w-4 h-4" /> }]
+    : []),
+];
 
-   
-  ]
 
   return (
     <header className="bg-gray-900 text-white shadow-lg sticky top-0 z-50">

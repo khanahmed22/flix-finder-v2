@@ -142,7 +142,8 @@ function App() {
                 </Suspense>
               }
             ></Route>): null}
-
+            
+          {session ? (
           <Route
             path="/ai"
             element={
@@ -157,7 +158,7 @@ function App() {
                 <Gemini />
               </Suspense>
             }
-          ></Route>
+          ></Route>): null}
 
           <Route
             path="*"
