@@ -1,6 +1,6 @@
 
 
-import { useState, useRef } from "react" // Import useRef
+import { useState, useRef } from "react" 
 import { supabase } from "../db/supabase"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
@@ -595,7 +595,7 @@ const generateListImage = async () => {
               </div>
             ) : movies && movies.length > 0 ? (
               <div
-                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
+                className="grid max-md:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 place-items-center"
                 ref={listContainerRef}
               >
                 {movies.map((movie, index) => (
@@ -605,7 +605,7 @@ const generateListImage = async () => {
                     onDragLeave={handleDragLeave}
                     onDrop={(e) => handleDrop(e, index)}
                     onDragEnd={handleDragEnd}
-                    className={`bg-gray-700 rounded-lg overflow-hidden group hover:transform hover:scale-105 transition-all duration-300 relative ${
+                    className={`bg-gray-700 w-fit  rounded-lg overflow-hidden group hover:transform hover:scale-105 transition-all duration-300 relative ${
                       dragOverItem === index ? "ring-2 ring-yellow-400" : ""
                     } ${draggedItem?.index === index ? "opacity-50" : ""}`}
                   >
@@ -618,7 +618,7 @@ const generateListImage = async () => {
                     <div
                       draggable
                       onDragStart={(e) => handleDragStart(e, movie, index)}
-                      className="absolute top-5 right-2 -translate-y-1/2  opacity-0 group-hover:opacity-100 bg-black bg-opacity-75 rounded p-1 z-10 transition-opacity cursor-grab"
+                      className="absolute bottom-20 right-2 -translate-y-1/2  opacity-0 group-hover:opacity-100 bg-black bg-opacity-75 rounded p-1 z-10 transition-opacity cursor-grab"
                     >
                       <GripVertical className="w-4 h-4 text-white" />
                     </div>
@@ -639,14 +639,14 @@ const generateListImage = async () => {
                       <img
                         src={movie.poster_url || "/placeholder.svg?height=225&width=150&query=movie poster"}
                         alt={movie.title || "Movie poster"}
-                        className="w-full aspect-[2/3] object-cover"
+                        className="w-[150px] aspect-[2/3] object-cover"
                       />
                       
                     </div>
 
                     <div className="p-3">
                       <h3 className="font-semibold text-sm line-clamp-2">{movie.title}</h3>
-                      <p className="text-xs text-gray-400 mt-1">Rank #{movie.rank}</p>
+                     
                     </div>
                   </div>
                 ))}
