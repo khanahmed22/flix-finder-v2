@@ -2,8 +2,6 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Route, Routes } from "react-router";
 import Home from "./pages/Home";
-import TopRatedMovies from "./pages/TopRatedMovies";
-import TopRatedTVShows from "./pages/TopRatedTVShows";
 import { Toaster } from "sonner";
 import ScrollToTop from "./components/ScrollToTop";
 import { useEffect } from "react";
@@ -17,6 +15,8 @@ const SignIn = lazy(() => import("./pages/SignIn"));
 const MovieView = lazy(()=>import('./pages/MovieView'))
 const Gemini = lazy(()=>import('./pages/Gemini'))
 const MovieListManager = lazy(()=>import('./pages/MovieListManager'))
+const TopRatedMovies =  lazy(()=>import('./pages/TopRatedMovies'))
+const TopRatedTVShows =  lazy(()=>import('./pages/TopRatedTVShows'))
 
 function App() {
   const { session, fetchSession, setSession } = useAuth();
@@ -63,12 +63,34 @@ function App() {
 
           <Route
             path="/top-rated-movies/:pgno"
-            element={<TopRatedMovies />}
+            element={
+              <Suspense
+                fallback={
+                  <div className="min-h-screen flex items-center justify-center">
+                    {" "}
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-yellow-400"></div>
+                  </div>
+                }
+              >
+                <TopRatedMovies />
+              </Suspense>
+            }
           ></Route>
 
           <Route
             path="/top-rated-tv-shows/:pgno"
-            element={<TopRatedTVShows />}
+            element={
+              <Suspense
+                fallback={
+                  <div className="min-h-screen flex items-center justify-center">
+                    {" "}
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-yellow-400"></div>
+                  </div>
+                }
+              >
+                <TopRatedTVShows />
+              </Suspense>
+            }
           ></Route>
 
           <Route
