@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /top-rated-movies/1
+Allow: /top-rated-tv-shows/1
+Allow: /ai
+Allow: /sign-in
+Disallow: /account
+Disallow: /lists
+
+Sitemap: https://flix-finder-v2.netlify.app/sitemap.xml

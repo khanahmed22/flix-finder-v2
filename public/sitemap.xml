@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://flix-finder-v2.netlify.app/</loc>
+  </url>
+  <url>
+    <loc>https://flix-finder-v2.netlify.app/top-rated-movies/1</loc>
+  </url>
+  <url>
+    <loc>https://flix-finder-v2.netlify.app/top-rated-tv-shows/1</loc>
+  </url>
+  <url>
+    <loc>https://flix-finder-v2.netlify.app/ai</loc>
+  </url>
+   <url>
+    <loc>https://flix-finder-v2.netlify.app/sign-in</loc>
+  </url>
+   <url>
+    <loc>https://flix-finder-v2.netlify.app/account</loc>
+  </url>
+   <url>
+    <loc>https://flix-finder-v2.netlify.app/lists</loc>
+  </url>
+</urlset>
