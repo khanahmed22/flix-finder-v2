@@ -109,6 +109,7 @@ export default function Home() {
                 src={`https://image.tmdb.org/t/p/w1280${trendingTitleToDay?.backdrop_path}`}
                 alt={trendingTitleToDay?.title || trendingTitleToDay?.name}
                 sizes="(max-width: 1280px) 100vw, 50vw"
+                fetchPriority="high"
                       
               
               />
