@@ -10,7 +10,7 @@ import { useAuth } from "../authStore/authStore"
 
 
 export const Header = () => {
-  const { session } = useAuth()
+  const { session,isLoading } = useAuth()
   const [search, setSearch] = useState("")
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -67,10 +67,11 @@ export const Header = () => {
   { to: "/", label: "Home", icon: <Home className="w-4 h-4" /> },
   { to: "/top-rated-movies/1", label: "Top Movies", icon: <Film className="w-4 h-4" /> },
   { to: "/top-rated-tv-shows/1", label: "Top TV Shows", icon: <Tv className="w-4 h-4" /> },
-  ...(session
+  ...(!isLoading && session
     ? [{ to: "/ai", label: "AI Suggestions", icon: <Brain className="w-4 h-4" /> }]
     : []),
 ];
+
 
 
   return (
@@ -153,7 +154,9 @@ export const Header = () => {
               )}
             </div>
 
-            {session ? (
+            {isLoading ? <div className="skeleton h-[38px] w-[100px] rounded-lg"></div>
+
+            : session ? (
               <NavLink
                 to="/account"
                 aria-label="Link to Account Page"
